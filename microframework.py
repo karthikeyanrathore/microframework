@@ -26,6 +26,7 @@ class Microframework(object):
       self.debug = options.pop('debug')
     options.setdefault('use_debugger', self.debug)
     options.setdefault('use_reloader', self.debug)
+    # run_simple(host, port, self: WSGIApplication, args..)
     return run_simple(host, port, self, **options)
   
   def __call__(self):
@@ -49,10 +50,9 @@ if __name__ == "__main__":
     if os.getenv('DEBUG') is not None:
       app.run(debug=True)
     # run without debug mode.
-    app.run()
+    # app.run()
+    app()
 
   # Missing  ENV var
   else:
-    print("ENV variables missing")
-    print("FLASK=1 ./microframework.py")
-    print("MICROFRAMEWORK=1 ./microframework.py")
+    pass
